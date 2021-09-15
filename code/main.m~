@@ -12,10 +12,11 @@ noise_names = {'u'};
 
 n = length(noise_options);
 
-n_sim = 50;
+% n = 28 saved
+n_sim = 5;
 field_avgs = [];
 
-wb_sims = my_waitbar('Loading instances');
+wb = my_waitbar('Loading instances');
 
 for j = 1:n_sim
     field_avg = struct();
@@ -61,9 +62,11 @@ for j = 1:n_sim
         
     %     run('./plot_simulation.m');
     end
-    
-    field_avgs = [field_avgs, field_avg];
-    
-    wb_sims.update_waitbar(j, n_sim);
+       
+    wb.update_waitbar(j, n_sim);
+end
+
+for field = fields
+    field_avg.(field) = field_avg.(field)/n_sim;
 end
 
