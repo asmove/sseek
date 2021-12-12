@@ -7,7 +7,7 @@ model_name = 'bary_source_seeking';
 
 n = length(noise_options);
 n_sim = 1;
-e🏑= [];
+field_avgs = [];
 
 wb_sims = my_waitbar('Loading instances');
 
