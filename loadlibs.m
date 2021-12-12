@@ -7,6 +7,6 @@ for i = 1:3
 
 	addpath(libpath_i);
 	addpath(genpath(libpath_i));
-	savepath(libpath_i);
+	savepath;
 end
 
