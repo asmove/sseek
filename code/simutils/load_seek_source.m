@@ -6,7 +6,7 @@ t0 = tic();
 
 params = struct();
 source_opt = 'peaks';
-[source_expr, min_coord] = choose_and_load_source(model_name, source_opt, sys, params);
+[source_expr, min_coord] = choose_and_load_source(ctx.model_name, source_opt, sys, params);
 
 toc(t0);
 disp('Source expression loaded!');
