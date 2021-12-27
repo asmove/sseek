@@ -55,9 +55,9 @@ trajectory_info.thetaA = 0;
 trajectory_info.alphaA = 0.5;
 trajectory_info.alphaB = 0.5;
 trajectory_info.deltas = out.deltas;
+
 trajectory_info.devval_P0 = 0.5;
 trajectory_info.devval_traj = 0.5;
-
 trajectory_info.is_dest_noised = true;
 trajectory_info.is_traj_noised = false;
 

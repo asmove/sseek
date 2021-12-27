@@ -1,11 +1,22 @@
 % (dest, traj, u) noise parameters
-noise_options = {[false, false, true]};
-noise_devvals = {0.5};
-noise_names = {'u'};
+% noise_options = {[true, false, false], ...
+%                  [false, true, false], ...
+%                  [false, false, true]};
+% noise_devvals = {[0.5, 0, 0], ...
+%                  [0, 0.5, 0], ...
+%                  [0, 0, 0.5]};
+% noise_names = {'dest', 'traj', 'u'};
+
+noise_options = {[true, false, false]};
+noise_devvals = {[0.5, 0, 0], ...
+                 [0, 0.5, 0], ...
+                 [0, 0, 0.5]};
+noise_names = {'dest', 'traj', 'u'};
+
 
 n = length(noise_options);
 field_avgs = [];
-n_sim = 1;
+n_sim = 2;
 
 run('load_simulink_blocks.m');
 
