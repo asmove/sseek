@@ -15,7 +15,13 @@ n = length(noise_options);
 field_avgs = [];
 n_sim = 2;
 
+disp('Loading simulation blocks...');
+t_b = tic();
+
 run('load_simulink_blocks.m');
+
+dt = toc(t_b);
+fprintf('Simulation blocks loaded in %.2fs\n', dt);
 
 wb_sims = my_waitbar('Loading instances');
 for j = 1:n_sim
@@ -28,4 +34,4 @@ for j = 1:n_sim
     wb_sims.update_waitbar(j, n_sim);
 end
 
-run('plot_trajs.m');
+%run('plot_trajs.m');

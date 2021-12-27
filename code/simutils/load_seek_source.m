@@ -16,5 +16,5 @@ source_opt = 'parabolic';
 
 [source_expr, min_coord] = choose_and_load_source(ctx.model_name, source_opt, sys, params);
 
-toc(t0);
-disp('Source expression loaded!');
+dt = toc(t0);
+fprintf('Source expression loaded in %.2fs\n', dt);

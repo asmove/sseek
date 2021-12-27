@@ -13,6 +13,6 @@ run('~/github/quindim/examples/omnirobot/code/load_model.m');
 
 gen_plant_scripts(sys, ctx);
 
-toc(t0);
-disp('Seek agent loaded!');
+dt = toc(t0);
+fprintf('Seek agent loaded in %.2fs\n', dt);
 

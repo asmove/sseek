@@ -5,6 +5,6 @@ t0 = tic();
 run('load_control_symbs.m')
 run('load_control_blocks.m')
 
-toc(t0);
-disp('Seek control loaded!');
+dt = toc(t0);
+fprintf('Seek control loaded in %.2fs\n', dt);
 
