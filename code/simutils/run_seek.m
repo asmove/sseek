@@ -1,3 +1,6 @@
+disp('Source seeking started!');
+ts = tic();
+
 % (dest, traj, u) noise parameters
 % noise_options = {[true, false, false], ...
 %                  [false, true, false], ...
@@ -15,13 +18,13 @@ n = length(noise_options);
 field_avgs = [];
 n_sim = 2;
 
-disp('Loading simulation blocks...');
-t_b = tic();
-
-run('load_simulink_blocks.m');
-
-dt = toc(t_b);
-fprintf('Simulation blocks loaded in %.2fs\n', dt);
+% disp('Loading simulation blocks...');
+% t_b = tic();
+% 
+% run('load_simulink_blocks.m');
+% 
+% dt = toc(t_b);
+% fprintf('Simulation blocks loaded in %.2fs\n', dt);
 
 wb_sims = my_waitbar('Loading instances');
 for j = 1:n_sim
@@ -35,3 +38,6 @@ for j = 1:n_sim
 end
 
 %run('plot_trajs.m');
+
+dt = toc(ts);
+fprintf('Source seeking finished in %.2fs\n', dt);

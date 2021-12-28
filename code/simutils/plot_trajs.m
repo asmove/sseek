@@ -2,7 +2,7 @@ fields = fieldnames(field_avgs);
 
 for i = 1:length(fields)
     field_i = fields{i};
-    avg_values.(fields{i}) = struct_mean(field_avgs, field_i );
+    avg_values.(fields{i}) = struct_mean(field_avgs, field_i);
 end
 
 time_ = linspace(0, tf, dt);
