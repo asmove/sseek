@@ -1,19 +1,32 @@
-% (dest, traj, u) noise parameters
-noise_options = {[false, false, true]};
-noise_devvals = {0.5};
-noise_names = {'u'};
+disp('Source seeking started!');
+ts = tic();
 
-model_name = 'bary_source_seeking';
+% (dest, traj, u) noise parameters
+% noise_options = {[true, false, false], ...
+%                  [false, true, false], ...
+%                  [false, false, true]};
+% noise_devvals = {[0.5, 0, 0], ...
+%                  [0, 0.5, 0], ...
+%                  [0, 0, 0.5]};
+% noise_names = {'dest', 'traj', 'u'};
+
+noise_options = {[true, false, false]};
+noise_devvals = {[0.5, 0, 0]};
+noise_names = {'dest'};
 
 n = length(noise_options);
-n_sim = 1;
 field_avgs = [];
+n_sim = 2;
+
+% disp('Loading simulation blocks...');
+% t_b = tic();
+% 
+% run('load_simulink_blocks.m');
+% 
+% dt = toc(t_b);
+% fprintf('Simulation blocks loaded in %.2fs\n', dt);
 
 wb_sims = my_waitbar('Loading instances');
-
-run('load_seek_agent.m');
-run('load_seek_source.m');
-
 for j = 1:n_sim
     field_avg = struct();
     
@@ -24,4 +37,7 @@ for j = 1:n_sim
     wb_sims.update_waitbar(j, n_sim);
 end
 
-run('plot_trajs.m');
+%run('plot_trajs.m');
+
+dt = toc(ts);
+fprintf('Source seeking finished in %.2fs\n', dt);

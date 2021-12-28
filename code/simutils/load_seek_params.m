@@ -7,8 +7,9 @@ noise_name = noise_names{i};
 
 run('load_parameters.m');
 
-options.abs_tol = '1e-3';
-options.rel_tol = '1e-3';
+options = struct('');
+options(1).AbsTol = '1e-3';
+options(1).RelTol = '1e-3';
 
 toc(t0);
 disp('Seek params loaded.');

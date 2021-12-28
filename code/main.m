@@ -1,12 +1,13 @@
 clear all
 close all
+bdclose all
 clc
 
+% Load necessary libraries
 run('../loadlibs.m');
 
-% Load system
-run('load_model.m');
-
 % Run source seek
+cpath = pwd;
 run('run_seek.m');
+
 
