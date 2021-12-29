@@ -42,13 +42,6 @@ for i = 1:n_f
         aux2 = field_avg.(field);
         field_avg(1).(field) = aux2 + aux1;
         aux3 = field_avg.(field);
-        
-        if(strcmp(field, 'u'))
-            field
-            aux1(1, :)
-            aux2(1, :)
-            aux3(1, :)
-        end
     end
 end
 

@@ -1,7 +1,7 @@
 fields = fieldnames(field_avg);
-
 for i = 1:length(fields)
-    avg_values.(fields{i}) = field_avg.(fields{i})/n_sim;
+    field = fields{i};
+    avg_values.(field) = field_avg.(field)/n_sim;
 end
 
 % Data readw
@@ -34,7 +34,7 @@ time_m = time_;
 m_interval = avg_values.m_interval;
 
 time_u = time_;
-u = field_avg.u;
+u = avg_values.u;
 
 hfig = my_figure();
 
