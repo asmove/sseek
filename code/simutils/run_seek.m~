@@ -35,14 +35,12 @@ for i_sim = 1:n
         run('simulate_source_seek.m');
     end
     
-    idx = i_sim+(j_sim-1)*n;
-    idf = n_sim*n;
-    wb_j_sims.update_waitbar(idx, idf);
+    wb_j_sims.update_waitbar(i_sim+(j_sim-1)*, n_sim*n);
 end
 
 wb_j_sims.close_window();
 
-run('plot_trajs.m');
+% run('plot_trajs.m');
 
 dt = toc(ts);
 fprintf('Source seeking finished in %.2fs\n', dt);

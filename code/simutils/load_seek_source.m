@@ -9,7 +9,7 @@ ctx(1).model_name = model_name;
 ctx(1).model_path = model_path;
 
 params = struct();
-params.center = [0, 0];
+params.center = [3, 3];
 source_opt = 'parabolic';
 
 % source_opt = 'peaks';

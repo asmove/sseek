@@ -1,9 +1,9 @@
 disp('Loading seek params...');
 t0 = tic();
 
-noise_option = noise_options{i};
-noise_devval = noise_devvals{i}; 
-noise_name = noise_names{i};
+noise_option = noise_options{i_sim};
+noise_devval = noise_devvals{i_sim}; 
+noise_name = noise_names{i_sim};
 
 run('load_parameters.m');
 

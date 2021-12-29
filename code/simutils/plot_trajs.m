@@ -1,13 +1,11 @@
-fields = fieldnames(field_avgs);
+fields = fieldnames(field_avg);
 
 for i = 1:length(fields)
-    field_i = fields{i};
-    avg_values.(fields{i}) = struct_mean(field_avgs, field_i);
+    avg_values.(fields{i}) = field_avg.(fields{i})/n_sim;
 end
 
-time_ = linspace(0, tf, dt);
-
-% Data read
+% Data readw
+time_ = field_avg.tout;
 time_q = time_;
 coordinates = avg_values.coordinates;
 
@@ -22,7 +20,7 @@ trajs = avg_values.trajs;
 
 time_readings = time_;
 readings = avg_values.readings;
-field_avgs
+
 time_estimations = time_;
 estimations = avg_values.estimations;
 
@@ -36,32 +34,32 @@ time_m = time_;
 m_interval = avg_values.m_interval;
 
 time_u = time_;
-u = avg_values.u;
+u = field_avg.u;
 
 hfig = my_figure();
 
 for i = 1:n_sim
-    coordinates = field_avgs(i).coordinates;
-    xhat_interval = field_avgs(i).xhat_interval;
-    xhat = field_avgs(i).xhat;
+    coordinates_ = instances{i}.coordinates;
+%     xhat_interval = field_avgs(i).xhat_interval;
+%     xhat = field_avgs(i).xhat;
 
-    plot(coordinates(:, 1), coordinates(:, 2), 'b-');
-    hold on;
-
-    plot(xhat(:, 1), xhat(:, 2), 'gp', 'Linewidth', 3);
-    hold on;
-    
-    plot(xhat_interval(:, 1), xhat_interval(:, 2), ...
-         'k-', 'Linewidth', 3);
+    plot(coordinates_(:, 1), coordinates_(:, 2));
     hold on;
 
-    plot(coordinates(1, 1), coordinates(1, 2), ....
-         'gp', 'MarkerSize', 15, 'MarkerFaceColor', 'green');
-    hold on;
-
-    plot(coordinates(end, 1), coordinates(end, 2), ...
-         'sr', 'MarkerSize', 15, 'MarkerFaceColor', 'red');
-    hold on;
+%     plot(xhat(:, 1), xhat(:, 2), 'gp', 'Linewidth', 3);
+%     hold on;
+%     
+%     plot(xhat_interval(:, 1), xhat_interval(:, 2), ...
+%          'k-', 'Linewidth', 3);
+%     hold on;
+% 
+%     plot(coordinates(1, 1), coordinates(1, 2), ....
+%          'gp', 'MarkerSize', 15, 'MarkerFaceColor', 'green');
+%     hold on;
+% 
+%     plot(coordinates(end, 1), coordinates(end, 2), ...
+%          'sr', 'MarkerSize', 15, 'MarkerFaceColor', 'red');
+%     hold on;
 end
 
 hold off;
@@ -140,10 +138,10 @@ axis(axs{1}{2}, 'square');
 axis(axs{1}{3}, 'square');
 
 % XY plot
-xm = -3;
-xM = 3;
-ym = -3;
-yM = 3;
+xm = -5;
+xM = 5;
+ym = -5;
+yM = 5;
 
 n = 30;
 x = linspace(xm, xM, n);
@@ -188,37 +186,15 @@ plot(coordinates(end, 1), coordinates(end, 2), ...
      'sr', 'MarkerSize', 15, 'MarkerFaceColor', 'red');
 hold on;
 
-plot(c0(1), c0(2), ....
+plot(params.center(1), params.center(2), ....
      'co', 'MarkerSize', 15, 'MarkerFaceColor', 'blue');
 hold off;
 
+axis([xm xM ym yM]);
 axis(gca, 'square');
 
 xlabel('$x$ $[m]$', 'interpreter', 'latex');
 ylabel('$y$ $[m]$', 'interpreter', 'latex');
-
-% [C_1, IA_1, ~] = unique(xhat(:, 1));
-% IA_1 = sort(IA_1);
-% 
-% [C_2, IA_2, ~] = unique(xhat(:, 2));
-% IA_2 = sort(IA_2);
-% 
-% Cs = [xhat(IA_1, 1), xhat(IA_2, 2)];
-% 
-% plot(Cs(:, 1), Cs(:, 2), 'ro');
-% 
-% traj_cell = {};
-% traj_xy = [trajs(:, 1), trajs(:, 4)];
-% 
-% for i = 1:length(IA_1)-1
-%     j = IA_1(i);
-%     jp1 = IA_1(i+1)-1;
-%     plot(traj_xy(j:jp1, 1), traj_xy(j:jp1, 2), 'r--');
-%     hold on;
-% end
-% 
-% j = IA_1(end);
-% plot(traj_xy(j:end, 1), traj_xy(j:end, 2), 'r--');
 
 % Source value
 plot_info.titles = {''};
@@ -228,7 +204,6 @@ plot_info.grid_size = [1, 1];
 
 [h_f, axs] = my_plot(time_readings, readings, plot_info);
 
-axis([xm xM ym yM]);
 axis(axs{1}{1}, 'square');
 
 % Source estimation on interval
@@ -266,5 +241,5 @@ saveas(h_p, [filepath, 'speeds'], 'epsc');
 saveas(h_f, [filepath, 'function'], 'epsc');
 saveas(h_xhat, [filepath, 'estimation'], 'epsc');
 
-close all
+% close all
 
