@@ -139,9 +139,9 @@ axis(axs{1}{1}, 'square');
 axis(axs{1}{2}, 'square');
 axis(axs{1}{3}, 'square');
 
-axs{1}{1}.YLim = [-30, 30];
-axs{1}{2}.YLim = [-30, 30];
-axs{1}{3}.YLim = [-30, 30];
+axs{1}{1}.YLim = [-10, 10];
+axs{1}{2}.YLim = [-10, 10];
+axs{1}{3}.YLim = [-10, 10];
 
 plot_info.titles = {'', '', '', '', '', ''};
 plot_info.xlabels = {'', '', '', ...

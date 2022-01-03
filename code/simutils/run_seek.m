@@ -1,21 +1,15 @@
 disp('Source seeking started!');
 ts = tic();
 
-% noise_options = {[true, false, false], ...
-%                  [false, true, false], ...
-%                  [false, false, true]};
-% noise_devvals = {[0.5, 0, 0], ...
-%                  [0, 0.5, 0], ... 
-%                  [0, 0, 0.5]};
-% noise_names = {'dest', 'traj', 'u'};
-
-noise_options = {[false, false, false]};
-noise_devvals = {[0.5, 0, 0]};
-noise_names = {'dest'};
+noise_options = {[false, false, false], ...
+                 [false, false, true]};
+noise_devvals = {[0.5, 0, 0], ...
+                 [0, 0, 0.5]};
+noise_names = {'dest', 'u'};
 
 n_scenes = length(noise_options);
 clear field_avg;
-n_sims = 2;
+n_sims = 100;
 
 disp('Loading simulation blocks...');
 t_b = tic();
