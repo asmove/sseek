@@ -9,7 +9,9 @@ if(isempty(fieldnames(field_avg)))
     for k = 1:n_f
         field = fields{k};
         
-        if(strcmp(field, 'tout') || strcmp(field, 'coordinates'))
+        if(strcmp(field, 'tout') || ...
+           strcmp(field, 'coordinates') || ...
+           strcmp(field, 'xhat_interval'))
             instance.(field) = 0;
         end
         
@@ -24,10 +26,12 @@ n_f = length(fields);
 for i = 1:n_f
     field = fields{i};
     
-    if(strcmp(field, 'tout') || strcmp(field, 'coordinates'))
+    if(strcmp(field, 'tout') || ...
+       strcmp(field, 'coordinates') || ...
+       strcmp(field, 'xhat_interval'))
         if(strcmp(field, 'tout'))
             instance.(field) = simOut.(field);
-        elseif(strcmp(field, 'coordinates'))
+        else
             instance.(field) = simOut.(field).signals.values;
         end
     end
