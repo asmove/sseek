@@ -42,7 +42,7 @@ xM = 5;
 ym = -5;
 yM = 5;
 
-n = 30;
+n = 60;
 x = linspace(xm, xM, n);
 y = linspace(ym, yM, n);
 
@@ -74,8 +74,8 @@ for i = 1:n_sims
     coordinates_ = instances{i}.coordinates;
     xhat_interval = instances{i}.xhat_interval;
     
-    plot(coordinates_(:, 1), coordinates_(:, 2));
-    hold on;
+%     plot(coordinates_(:, 1), coordinates_(:, 2));
+%     hold on;
 
     plot(xhat_interval(end, 1), xhat_interval(end, 2), ...
          'co', 'MarkerSize', 15, 'MarkerFaceColor', 'blue');
@@ -118,8 +118,8 @@ axis(axs{1}{4}, 'square');
 axis(axs{1}{5}, 'square');
 axis(axs{1}{6}, 'square');
 
-axs{1}{1}.YLim = [0, 5];
-axs{1}{2}.YLim = [0, 5];
+axs{1}{1}.YLim = [-5, 3];
+axs{1}{2}.YLim = [-5, 5];
 axs{1}{3}.YLim = [-4, 4];
 axs{1}{4}.YLim = [-30, 30];
 axs{1}{5}.YLim = [0, 400];
@@ -139,9 +139,10 @@ axis(axs{1}{1}, 'square');
 axis(axs{1}{2}, 'square');
 axis(axs{1}{3}, 'square');
 
-axs{1}{1}.YLim = [-10, 10];
-axs{1}{2}.YLim = [-10, 10];
-axs{1}{3}.YLim = [-10, 10];
+max_val = 5;
+axs{1}{1}.YLim = [-max_val, max_val];
+axs{1}{2}.YLim = [-max_val, max_val];
+axs{1}{3}.YLim = [-max_val, max_val];
 
 plot_info.titles = {'', '', '', '', '', ''};
 plot_info.xlabels = {'', '', '', ...
@@ -203,11 +204,15 @@ hold on;
 
 plot(coordinates(end, 1), coordinates(end, 2), ...
      'sr', 'MarkerSize', 15, 'MarkerFaceColor', 'red');
+
 hold on;
 
-plot(params.center(1), params.center(2), ....
-     'co', 'MarkerSize', 15, 'MarkerFaceColor', 'blue');
-hold off;
+if(~isempty(fieldnames(params)))
+    plot(params.center(1), params.center(2), ....
+         'co', 'MarkerSize', 15, 'MarkerFaceColor', 'blue');
+
+    hold off;
+end
 
 axis([xm xM ym yM]);
 axis(gca, 'square');
@@ -249,7 +254,7 @@ plot_info.grid_size = [1, 2];
 axis(axs{1}{1}, 'square');
 axis(axs{1}{2}, 'square');
 
-root_path = '../imgs/';
+root_path = [cpath, '/../imgs/'];
 rel_path = [source_opt, '/', noise_name, '/'];
 imgs_path = [root_path, rel_path];
 mkdir(imgs_path);

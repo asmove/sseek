@@ -12,10 +12,8 @@ noise_devvals = {[0.5, 0, 0]};
 noise_names = {'dest'};
 n_scenes = length(noise_options);
 clear field_avg;
-n_sims = 250;
-
+n_sims = 1;
 load_blocks=true;
-plot_trajs=false;
 
 if(load_blocks)
     disp('Loading simulation blocks...');
@@ -33,6 +31,7 @@ for i_sim = 1:n_scenes
     instances = {};
     
     for j_sim = 1:n_sims
+        rng('shuffle');
         run('simulate_source_seek.m');
         
         idx = (i_sim-1)*n_sims+j_sim;
@@ -40,12 +39,9 @@ for i_sim = 1:n_scenes
         wb_j_sims.update_waitbar(idx, idf);
     end
     
-    if(plot_trajs)
-        run('plot_trajs.m');
-    end
-    
+    run('plot_trajs.m');
 end
-    
+
 wb_j_sims.close_window();
 
 dt = toc(ts);
