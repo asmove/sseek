@@ -7,15 +7,29 @@ ts = tic();
 %                  [0, 0, 0.5]};
 % noise_names = {'dest', 'u'};
 
-noise_options = {[false, false, false]};
-noise_devvals = {[0.5, 0, 0]};
-noise_names = {'dest'};
-n_scenes = length(noise_options);
-clear field_avg;
-n_sims = 250;
+% noise_options = {[true, false, false], ...
+%                  [false, true, false], ...
+%                  [false, false, true], ...
+%                  [false, false, false]};
+% noise_devvals = {[0.1, 0, 0], ...
+%                  [0, 0.1, 0], ...
+%                  [0.5, 0, 0.5], ...
+%                  [0, 0, 0]};
+% 
+% noise_names = {'dest', 'traj', 'u', 'none'};
 
-load_blocks=true;
-plot_trajs=false;
+noise_options = {[false, false, false]};
+noise_devvals = {[0, 0, 0]};
+
+noise_names = {'multiple'};
+
+n_scenes = length(noise_options);
+
+clear field_avg;
+n_sims = 25;
+
+load_blocks=false;
+plot_trajs_flag=true;
 
 if(load_blocks)
     disp('Loading simulation blocks...');
@@ -37,10 +51,10 @@ for i_sim = 1:n_scenes
         
         idx = (i_sim-1)*n_sims+j_sim;
         idf = n_sims*n_scenes;
-        wb_j_sims.update_waitbar(idx, idf);
+        wb_j_sims.update(idx, idf);
     end
     
-    if(plot_trajs)
+    if(plot_trajs_flag)
         run('plot_trajs.m');
     end
     

@@ -1,4 +1,4 @@
-% clear all
+clear all
 close all
 bdclose all
 close_all_waitbars

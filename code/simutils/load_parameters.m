@@ -21,7 +21,7 @@ T_traj = T_cur;
 % Final time
 dt = 1e-3;
 
-n_T = 40;
+n_T = 39.95;
 tf = n_T*T_traj;
 
 % [s]
