@@ -62,21 +62,21 @@ y = linspace(ym, yM, n);
 nx = length(x);
 ny = length(y);
 
-% wb = my_waitbar('Loading function.');
-% 
-% Z = zeros(nx, ny);
-% for i = 1:nx
-%     xi = x(i);
-%     for j = 1:ny 
-%         yi = y(j);
-%         Z(i, j) = my_subs(source_expr, sys.kin.q(1:2), [xi; yi]);
-%         wb.update(i*nx + j, nx*ny);
-%     end
-% end
-% 
-% wb.close_window();
-% 
-% [X,Y] = meshgrid(x,y);
+wb = my_waitbar('Loading function.');
+
+Z = zeros(nx, ny);
+for i = 1:nx
+    xi = x(i);
+    for j = 1:ny 
+        yi = y(j);
+        Z(i, j) = my_subs(source_expr, sys.kin.q(1:2), [xi; yi]);
+        wb.update(i*nx + j, nx*ny);
+    end
+end
+
+wb.close_window();
+
+[X,Y] = meshgrid(x,y);
 
 hfig_instances = my_figure();
 
@@ -89,9 +89,10 @@ for i = 1:n_sims
     
 %     plot(coordinates_(:, 1), coordinates_(:, 2));
 %     hold on;
-    
-    plot(xhat_interval(:, 1), xhat_interval(:, 2), ...
-         'r', ...
+
+    plot(xhat_interval(end, 1), ...
+         xhat_interval(end, 2), ...
+         'r.', ...
          'MarkerSize', 15, ...
          'MarkerFaceColor', 'blue', ...
          'DisplayName', '$\hat{x}_f$');
@@ -105,7 +106,7 @@ for i = 1:n_sims
     hold on;
     
     plot(coordinates_(end, 1), coordinates_(end, 2), ...
-         'r.', ...
+         'b.', ...
          'MarkerSize', 15, ...
          'MarkerFaceColor', 'red', ...
          'DisplayName', '$x_f$');
@@ -296,6 +297,7 @@ axis(axs{1}{2}, 'square');
 root_path = [cpath, '/../imgs/'];
 rel_path = [source_opt, '/', noise_name, '/'];
 imgs_path = [root_path, rel_path];
+
 mkdir(imgs_path);
 
 saveas(hfig_instances, [imgs_path, 'instances'], 'epsc');

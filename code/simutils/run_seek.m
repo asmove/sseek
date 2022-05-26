@@ -26,10 +26,12 @@ noise_names = {'multiple'};
 n_scenes = length(noise_options);
 
 clear field_avg;
-n_sims = 25;
+n_sims = 100;
 
-load_blocks=false;
-plot_trajs_flag=true;
+sim_timelapse = zeros(n_sims, 1);
+
+load_blocks = false;
+plot_trajs_flag = false;
 
 if(load_blocks)
     disp('Loading simulation blocks...');
@@ -48,6 +50,9 @@ for i_sim = 1:n_scenes
     
     for j_sim = 1:n_sims
         run('simulate_source_seek.m');
+        
+        sim_timelapse(j_sim) = dt;
+        run('save_instance.m');
         
         idx = (i_sim-1)*n_sims+j_sim;
         idf = n_sims*n_scenes;
