@@ -1,22 +1,10 @@
+field_avg = struct();
+instances = {};
+
 disp('Saving instance...');
 t0 = tic();
 
 fields = simOut.who;
-
-% First runtime
-if(isempty(fieldnames(field_avg)))
-    n_f = length(fields);
-    for k = 1:n_f
-        field = fields{k};
-        
-        if(strcmp(field, 'tout') || ...
-           strcmp(field, 'coordinates') || ...
-           strcmp(field, 'xhat_interval'))
-            instance.(field) = 0;
-        end
-        
-    end
-end
 
 % Others
 n_f = length(fields);

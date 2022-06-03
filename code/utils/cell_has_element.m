@@ -1,5 +1,5 @@
 function [has_elements, ...
-          fields_str] = cell_has_element(cell_, fields)
+    fields_str] = cell_has_element(cell_, fields)
     has_elements = false(length(fields), 1);
     
     n_f = length(fields);

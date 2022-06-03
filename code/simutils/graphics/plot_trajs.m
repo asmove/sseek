@@ -2,7 +2,7 @@ clear avg_values;
 
 fields = fieldnames(instances{1});
 
-wb = my_waitbar('Averaging data.');
+wb_func = my_waitbar('Averaging data.');
 
 n_sims = length(instances);
 n_fields = length(fields);
@@ -16,7 +16,7 @@ for i = 1:n_fields
     end
 end
 
-wb.close_window()
+wb_func.close_window()
 
 % Data read
 time_ = avg_values.tout;
@@ -50,10 +50,10 @@ time_xhat_interval = avg_values.tout;
 xhat_interval = avg_values.xhat_interval;
 
 % Instances plot
-xm = -3;
-xM = 3;
-ym = -3;
-yM = 3;
+xm = xmin;
+xM = xmax;
+ym = ymin;
+yM = ymax;
 
 n = 60;
 x = linspace(xm, xM, n);

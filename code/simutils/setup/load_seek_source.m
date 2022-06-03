@@ -1,12 +1,5 @@
 disp('Loading source expression...');
 
-model_name = 'bary_source_seeking';
-model_path = [cpath, '/simutils/', model_name];
-
-ctx = struct('');
-ctx(1).model_name = model_name;
-ctx(1).model_path = model_path;
-
 params = struct();
 params.center = [1, 1];
 source_opt = 'peaks';
